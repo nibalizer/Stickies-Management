@@ -18,7 +18,7 @@ def shutDown(data):
 
 proxy = Proxy('http://127.0.0.1:6969/')
 dl = []
-
+"""
 d = proxy.callRemote('echo', 'bite me')
 d.addCallbacks(printValue, printError)
 dl.append(d)
@@ -34,14 +34,28 @@ dl.append(d)
 d = proxy.callRemote('science.compare', 7, 5)
 d.addCallbacks(printValue, printError)
 dl.append(d)
+"""
 
 d = proxy.callRemote('stikies.get', "will")
+d.addCallbacks(printValue, printError)
+dl.append(d)
+
+d = proxy.callRemote('stikies.add', "will1", "message1")
 d.addCallbacks(printValue, printError)
 dl.append(d)
 
 d = proxy.callRemote('stikies.add', "will", "message")
 d.addCallbacks(printValue, printError)
 dl.append(d)
+
+d = proxy.callRemote('stikies.add', "will2", "message2")
+d.addCallbacks(printValue, printError)
+dl.append(d)
+
+d = proxy.callRemote('stikies.list', "will")
+d.addCallbacks(printValue, printError)
+dl.append(d)
+
 
 dl = defer.DeferredList(dl)
 dl.addCallback(shutDown)

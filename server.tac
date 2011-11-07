@@ -32,8 +32,8 @@ class Stikies(jsonrpc.JSONRPC):
         """Add entry."""
         try:
             entries[name] = entry
-        except SyntaxError:
-            return "Whoops, dun broke"
+        except NameError:
+            return "Dun Goofed"
         else:
             return "Teleport Succesful"
 
@@ -43,6 +43,12 @@ class Stikies(jsonrpc.JSONRPC):
             return entries[name]
         except SyntaxError:
             return "Whoops, dun broke"
+    def jsonrpc_list(self, name):
+        """Get list of entries."""
+        try:
+            return ",".join(entries.keys())
+        except:
+            return "Dun Goofed"
 
 
 class Math(jsonrpc.JSONRPC):
